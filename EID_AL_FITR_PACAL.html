@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lebaran Cinta Untukmu 🤍</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400;600&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+            height: 100vh;
+            background: linear-gradient(135deg, #FFF8E1 0%, #F5E8C7 30%, #E8F5E8 70%, #FFF8E1 100%);
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #2C5530;
+        }
+
+        /* Ornamen Islami */
+        .ornament {
+            position: fixed;
+            opacity: 0.1;
+            z-index: 1;
+        }
+        .crescent { top: 10%; left: 10%; font-size: 4rem; }
+        .star { top: 15%; right: 15%; font-size: 2rem; animation: twinkle 3s infinite; }
+        .lantern { bottom: 20%; right: 10%; font-size: 3rem; animation: float 6s ease-in-out infinite; }
+
+        /* Partikel Bintang */
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 2;
+        }
+        .star-particle {
+            position: absolute;
+            color: #FFD700;
+            font-size: 1rem;
+            animation: fall linear infinite;
+        }
+
+        /* Container Utama */
+        .container {
+            text-align: center;
+            z-index: 10;
+            max-width: 90vw;
+            padding: 2rem;
+        }
+
+        .title {
+            font-family: 'Dancing Script', cursive;
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            color: #D4A017;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease-out;
+            text-shadow: 0 0 20px rgba(212, 160, 23, 0.3);
+        }
+
+        .subtitle {
+            font-size: clamp(1.1rem, 4vw, 1.8rem);
+            color: #4A7C59;
+            margin-bottom: 2.5rem;
+            font-weight: 300;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        .btn-romantic {
+            background: linear-gradient(45deg, rgba(255, 255, 255, 0.9), rgba(255, 248, 225, 0.8));
+            border: 2px solid #D4A017;
+            color: #D4A017;
+            padding: 1rem 2.5rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 8px 32px rgba(212, 160, 23, 0.2);
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        .btn-romantic:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(212, 160, 23, 0.4);
+            background: linear-gradient(45deg, rgba(255, 255, 255, 1), rgba(255, 248, 225, 0.9));
+        }
+
+        /* Pesan Card */
+        .message-card {
+            display: none;
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            padding: 3rem 2.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.1);
+            max-width: 95vw;
+            max-height: 80vh;
+            overflow-y: auto;
+            animation: openLetter 1s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .pesan-text {
+            font-family: 'Poppins', sans-serif;
+            font-size: clamp(1rem, 3.5vw, 1.3rem);
+            line-height: 1.8;
+            color: #2C5530;
+            text-align: left;
+            white-space: pre-line;
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        .btn-love {
+            margin-top: 2rem;
+            background: linear-gradient(45deg, #FF69B4, #FFB6C1);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.4);
+        }
+
+        .btn-love:hover {
+            transform: scale(1.1);
+            box-shadow: 0 15px 40px rgba(255, 105, 180, 0.6);
+        }
+
+        /* Hati Jatuh */
+        .hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 20;
+            display: none;
+        }
+        .heart {
+            position: absolute;
+            color: #FF69B4;
+            font-size: 2rem;
+            animation: heartFall 4s linear infinite;
+        }
+
+        /* Animasi */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes openLetter {
+            0% { transform: scale(0.3) rotate(-10deg); opacity: 0; }
+            50% { transform: scale(1.05) rotate(2deg); }
+            100% { transform: scale(1) rotate(0); opacity: 1; }
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+        }
+
+        @keyframes heartFall {
+            0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.2); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            .container { padding: 1rem; }
+            .message-card { padding: 2rem 1.5rem; margin: 1rem; }
+        }
+
+        /* Scrollbar Custom */
+        .message-card::-webkit-scrollbar {
+            width: 8px;
+        }
+        .message-card::-webkit-scrollbar-track {
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+        }
+        .message-card::-webkit-scrollbar-thumb {
+            background: rgba(212, 160, 23, 0.5);
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Ornamen -->
+    <div class="ornament crescent">🌙</div>
+    <div class="ornament star">⭐</div>
+    <div class="ornament lantern">🪔</div>
+
+    <!-- Partikel Bintang -->
+    <div class="stars" id="stars"></div>
+
+    <!-- Container Utama -->
+    <div class="container">
+        <div class="title">Selamat Hari Raya Idul Fitri 🤍✨</div>
+        <div class="subtitle">Untuk seseorang yang paling aku sayang…</div>
+        <button class="btn-romantic" onclick="openMessage()">Buka Pesan Dari Aku 🤍</button>
+
+        <!-- Pesan Card -->
+        <div class="message-card" id="messageCard">
+            <div class="pesan-text">
+hatiiiiii sayaannggggg minalll aidzinnnn walll faidzinnnn yaaaaa sayaannggggg 🤍🤍 akuuuuu mauuuuu mintaaa maaffffffffffffffff lahirrrr dannnn batinnnn kalauuuu selamaaaaaaaa kitaaaaa bareennngggggggggg akuuuuuuuuuuuuuuuuuuu pernahhhhhhhhhhh salahhhhh samaaaaaa kamuuuuu, pernahhhh bikinnnn kamuuuuu kesellll, sedihhh atauuuuu kecewaaaaaa, mungkinnnn kadaannggggg akuuuuuu jugaaaaaa sukaaaaaa egoisssss dannnn kuraannngggggggg ngertiiinnnnnnnnn perasaaannnnnnnnnn kamuuuuu. menjelaanggggggg hariii rayaaaa iniii akuuuu cumaaaaaaa pengennnn hubungaannn kitaaaa jugaaaaa ikutttt bersihhhhh dariiii semuaaaa salahhhhhhhhhhhh dannn salahhhhhhhhhhhh pahammmmmmmmmmm yaannnnggggggggggggg pernahhhhhhhhhhh adaaaaaaa. terimaaaaaaaaaa kasihhhhh yaaaaa sudahhhh tetapppp bertahannnn samaaaa akuuuuu sampaiiii sekaraannggggggg, sudahhhh sabarrrrr menghadapiiii sikappp akuuuuuuu, dannnnn sudahhhhhhh jadiii oraannnggggggggggg yaannnnggggggggggggg selaluuuuu adaaaaa buatttt akuuuuuuu. semogaaaa diiii hariiii yaannnnggggggggggggg penuhhh maaffffffffffffffff iniiii kitaaaaa bisaaaaa samaaaaaa samaaaaaaa saliinnggggggggg memaaffff kannnnnn, salinngggggggg mengertiiii, dannnn hubungannnnn kitaaaaa bisaaaa terussss bertahannnnnn lebihhhhh lamaaaaaaaaaaaa lagiiii, akuuuuu berharapppp kitaaaa masihhhhhh bisaaaa melewatiiiii banyakkkk ramadhannnnnn dannnn idulll fitriiii berikuttttnyaaaaaaa bareennngggggggggg bareennngggggggggg, ketawaaaa bareennngggggggggg, ceritaaaa bareennngggggggggg, dannnn tetapppp salinngggggggg sayaannngggggggggg sepertiiiiii sekaraannggggggg. sekaliiii lagiiii minalll aidzinnnn walll faidzinnnn yaaaaa sayaannggggg mohonnn maafff lahirrr dannn batinnnnn dariiiii akuuuuuu yaannnnggggggggggggg selaluuuuuuuuu sayaannngggggggggg kamuuuuu setiappppp detikkkkk, setiappppp menitttt, setiapppp jammmmm 💐💐🤍🤍🫶🫶🫶🤍🤍🤍
+            </div>
+            <button class="btn-love" onclick="loveExplosion()">Aku Sayang Kamu 🤍</button>
+        </div>
+    </div>
+
+    <!-- Hati Jatuh -->
+    <div class="hearts" id="hearts"></div>
+
+    <!-- Background Music -->
+    <audio id="bgMusic" loop>
+        <source src="data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmwhAA=" type="audio/wav">
+    </audio>
+
+    <script>
+        // Autoplay Music
+        window.addEventListener('load', () => {
+            const music = document.getElementById('bgMusic');
+            music.volume = 0.3;
+            music.play().catch(e => console.log('Music autoplay prevented'));
+        });
+
+        // Partikel Bintang
+        function createStar() {
+            const star = document.createElement('div');
+            star.className = 'star-particle';
+            star.innerHTML = '✨';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            star.style.animationDelay = Math.random() * 2 + 's';
+            document.getElementById('stars').appendChild(star);
+
+            setTimeout(() => {
+                star.remove();
+            }, 5000);
+        }
+
+        setInterval(createStar, 300);
+
+        // Buka Pesan
+        function openMessage() {
+            document.querySelector('.btn-romantic').style.display = 'none';
+            document.getElementById('messageCard').style.display = 'block';
+            document.querySelector('.title').style.opacity = '0.7';
+            document.querySelector('.subtitle').style.opacity = '0.7';
+        }
+
+        // Ledakan Hati
+        function loveExplosion() {
+            const heartsContainer = document.getElementById('hearts');
+            heartsContainer.style.display = 'block';
+            
+            for (let i = 0; i < 50; i++) {
+                setTimeout(() => {
+                    createHeart();
+                }, i * 50);
+            }
+            
+            setTimeout(() => {
+                heartsContainer.style.display = 'none';
+                heartsContainer.innerHTML = '';
+            }, 4000);
+        }
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.innerHTML = '💖';
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
+            document.getElementById('hearts').appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 4000);
+        }
+
+        // Responsive Touch
+        let touchStartY = 0;
+        document.addEventListener('touchstart', e => {
+            touchStartY = e.touches[0].clientY;
+        });
+        document.addEventListener('touchend', e => {
+            const touchEndY = e.changedTouches[0].clientY;
+            if (touchEndY < touchStartY - 50) {
+                // Swipe up - bisa ditambahkan fitur
+            }
+        });
+    </script>
+</body>
+</html>
